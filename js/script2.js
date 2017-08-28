@@ -14,6 +14,7 @@ var dx = 2;
 var dy = -2;
 
 function draw() {
+  ctx.clearRect(0,0, canvas.width, canvas.height);
   ctx.beginPath();
   ctx.arc(x, y, 10, 0, Math.PI*2);
   ctx.fillStyle = "#0095DD";
@@ -21,6 +22,5 @@ function draw() {
   ctx.closePath();
   // adds 2 on every frame every 10 milliseconds
   x += dx;
-
   y += dy;
 }
