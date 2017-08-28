@@ -30,6 +30,5 @@ ctx.beginPath();
   // the false is there for the direction of the drawing. False means clockwise - which is default, but I'm putting it here just so I know in the future.
 ctx.arc(240, 160, 20, 0, Math.PI*2, false);
 ctx.fillStyle = "green";
-
 ctx.fill();
 ctx.closePath();
