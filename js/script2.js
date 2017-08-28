@@ -33,12 +33,11 @@ function draw() {
 
 // is y position + the position of dy (2 in this case) is less than 0
   // if it's less than 0, we know the ball is moving up and off the canvas
-  if(y + dy < 0) {
-    // change the direction of the ball so it moves back down the canvas
+  if(y + dy > canvas.height || y + dy < 0) {
     dy = -dy;
   }
-  if (y + dy > canvas.height ) {
-    dy = -dy;
+  if(x + dx > canvas.height || x + dx < 0) {
+    dx = -dx;
   }
 
   x += dx;
