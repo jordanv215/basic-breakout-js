@@ -16,6 +16,31 @@ var paddleX = (canvas.width-paddleWidth)/2;
 var rightPressed = false;
 var leftPressed = false;
 
+//event listeners that will tell when a key is pressed down/when it is released
+document.addEventListener("keydown", keyDownHandler);
+document.addEventListener("keyup", keyUpHandler);
+
+// when you press the key down, it stores a keycode for the key that is pressed
+  // is then passed as an argument into this function
+  // keycode 39 corresponds to the right arrow
+function keyDownHandler(e) {
+  if(e.keycode == 39) {
+    rightPressed = true;
+  }
+  else if (e.keyCode == 37) {
+    leftPressed = true;
+  }
+}
+
+function keyUpHandler(e) {
+  if(e.keycode == 39) {
+    rightPressed = false;
+  }
+  else if (e.keyCode == 37) {
+    leftPressed = false;
+  }
+}
+
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, ballRadius, 0, Math.PI*2);
