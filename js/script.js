@@ -19,6 +19,13 @@ ctx.fillStyle = "#FF0000";
 ctx.fill();
 ctx.closePath(); //finish
 
+
+// time for a circle! break dem bricks yo
 ctx.beginPath();
 
+ctx.arc(240, 160, 20, 0, Math.PI*2, false);
+
+ctx.fillStyle = "green";
+
+ctx.fill();
 ctx.closePath();
