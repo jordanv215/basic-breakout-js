@@ -5,11 +5,14 @@ var ctx = canvas.getContext('2d');
 var x = canvas.width/2;
 // vertically, we will push the ball up 30px from the bottom of the page
 var y = canvas.height - 30;
-
 var dx = 2;
 var dy = -2;
-
 var ballRadius = 10;
+// starting width and height
+var paddleHeight = 10;
+var paddleWidth = 75;
+// starting x position on canvas
+var paddleX = (canvas.width-paddleWidth)/2;
 
 function drawBall() {
   ctx.beginPath();
@@ -17,6 +20,10 @@ function drawBall() {
   ctx.fillStyle = "#0095DD";
   ctx.fill();
   ctx.closePath();
+}
+
+function drawPaddle() {
+
 }
 
 function draw() {
