@@ -10,13 +10,17 @@ var x = canvas.width/2;
 // vertically, we will push the ball up 30px from the bottom of the page
 var y = canvas.height - 30;
 
-// so now the draw interval will be called every 10 seconds
+var dx = 2;
+var dy = -2;
+
 function draw() {
-  // drawing code
   ctx.beginPath();
   ctx.arc(x, y, 10, 0, Math.PI*2);
   ctx.fillStyle = "#0095DD";
   ctx.fill();
   ctx.closePath();
-// ball will be redrawn on EVERY frame
+  // adds 2 on every frame every 10 milliseconds
+  x += dx;
+
+  y += dy;
 }
