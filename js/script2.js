@@ -13,15 +13,21 @@ var y = canvas.height - 30;
 var dx = 2;
 var dy = -2;
 
-function draw() {
-  // clears the canvas before ball is drawn
-  ctx.clearRect(0,0, canvas.width, canvas.height);
+function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, 10, 0, Math.PI*2);
   ctx.fillStyle = "#0095DD";
   ctx.fill();
   ctx.closePath();
+}
+
+function draw() {
+  // clears the canvas before ball is drawn
+  ctx.clearRect(0,0, canvas.width, canvas.height);
   // adds 2 on every frame every 10 milliseconds
+
+  //cleaned up function by calling the drawBall function each time
+  drawBall();
   x += dx;
   y += dy;
 }
