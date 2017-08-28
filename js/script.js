@@ -18,3 +18,7 @@ ctx.fillStyle = "#FF0000";
 // this actually paints the rectangle red.
 ctx.fill();
 ctx.closePath(); //finish
+
+ctx.beginPath();
+
+ctx.closePath();
