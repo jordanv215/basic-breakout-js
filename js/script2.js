@@ -24,7 +24,7 @@ document.addEventListener("keyup", keyUpHandler);
   // is then passed as an argument into this function
   // keycode 39 corresponds to the right arrow
 function keyDownHandler(e) {
-  if(e.keycode == 39) {
+  if(e.keyCode == 39) {
     rightPressed = true;
   }
   else if (e.keyCode == 37) {
@@ -33,7 +33,7 @@ function keyDownHandler(e) {
 }
 
 function keyUpHandler(e) {
-  if(e.keycode == 39) {
+  if(e.keyCode == 39) {
     rightPressed = false;
   }
   else if (e.keyCode == 37) {
@@ -64,6 +64,7 @@ function draw() {
 
   //cleaned up function by calling the drawBall function each time
   drawBall();
+  drawPaddle();
 
 // is y position + the position of dy (2 in this case) is less than 0
   // if it's less than 0, we know the ball is moving up and off the canvas
@@ -73,6 +74,15 @@ function draw() {
   if(x + dx > canvas.width-ballRadius|| x + dx < ballRadius) {
     dx = -dx;
   }
+
+  // checking if left and right is pressed
+  if(rightPressed && paddleX < canvas.width-paddleWidth) {
+    paddleX += 7;
+  }
+  else if(leftPressed && paddleX > 0) {
+    paddleX -= 7;
+  }
+
 
   x += dx;
   y += dy;
