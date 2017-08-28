@@ -13,6 +13,8 @@ var paddleHeight = 10;
 var paddleWidth = 75;
 // starting x position on canvas
 var paddleX = (canvas.width-paddleWidth)/2;
+var rightPressed = false;
+var leftPressed = false;
 
 function drawBall() {
   ctx.beginPath();
