@@ -68,8 +68,12 @@ function draw() {
 
 // is y position + the position of dy (2 in this case) is less than 0
   // if it's less than 0, we know the ball is moving up and off the canvas
-  if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+  if(y + dy < ballRadius) {
     dy = -dy;
+  } else if (y + dy > canvas.height-ballRadius) {
+    alert("GAME OVER");
+    // returns location object that contains information about the url of the document 
+    document.location.reload();
   }
   if(x + dx > canvas.width-ballRadius|| x + dx < ballRadius) {
     dx = -dx;
