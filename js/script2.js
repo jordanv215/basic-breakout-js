@@ -71,9 +71,13 @@ function draw() {
   if(y + dy < ballRadius) {
     dy = -dy;
   } else if (y + dy > canvas.height-ballRadius) {
-    alert("GAME OVER");
-    // returns location object that contains information about the url of the document 
-    document.location.reload();
+    if(x > paddleX && x < paddleX + paddleWidth) {
+      dy = -dy;
+    } else {
+      alert("GAME OVER");
+      // returns location object that contains information about the url of the document
+      document.location.reload();
+    }
   }
   if(x + dx > canvas.width-ballRadius|| x + dx < ballRadius) {
     dx = -dx;
