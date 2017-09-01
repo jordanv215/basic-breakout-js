@@ -10,7 +10,7 @@ var dy = -2;
 var ballRadius = 10;
 // starting width and height
 var paddleHeight = 10;
-var paddleWidth = 75;
+var paddleWidth = 85;
 // starting x position on canvas
 var paddleX = (canvas.width-paddleWidth)/2;
 var rightPressed = false;
@@ -30,7 +30,7 @@ var bricks = [];
 for (c=0; c<brickColumnCount; c++) {
   bricks[c] = [];
   for (r=0; r<brickRowCount; r++) {
-    bricks[c][r] = {x:0, y:0};
+    bricks[c][r] = {x:0, y:0, status: 1};
   }
 }
 
@@ -44,20 +44,20 @@ document.addEventListener("keyup", keyUpHandler);
 function drawBricks() {
   for(c=0; c<brickColumnCount; c++) {
     for(r=0; r<brickRowCount; r++) {
-      var brickX = (c* (brickWidth+brickPadding))+brickOffsetLeft;
-      var brickY = (r* (brickHeight+brickPadding))+brickOffsetTop;
-      bricks[c][r].x = brickX;
-      bricks[c][r].y = brickY;
-      ctx.beginPath;
-      ctx.rect(brickX, brickY, brickWidth, brickHeight);
-      ctx.fillStyle = "#569f56";
-      ctx.fill();
-      ctx.closePath;
+      if(bricks[c][r].status == 1) {
+        var brickX = (c* (brickWidth+brickPadding))+brickOffsetLeft;
+        var brickY = (r* (brickHeight+brickPadding))+brickOffsetTop;
+        bricks[c][r].x = brickX;
+        bricks[c][r].y = brickY;
+        ctx.beginPath;
+        ctx.rect(brickX, brickY, brickWidth, brickHeight);
+        ctx.fillStyle = "#569f56";
+        ctx.fill();
+        ctx.closePath;
+      }
     }
   }
 }
-
-
 
 // when you press the key down, it stores a keycode for the key that is pressed
   // is then passed as an argument into this function
@@ -96,12 +96,30 @@ function drawPaddle() {
   ctx.closePath();
 }
 
+function collisionDetection() {
+  for(c=0; c<brickColumnCount; c++){
+    for(r=0; r<brickRowCount; r++){
+      // this will store the brick object in every loop
+      var b = bricks[c][r];
+      if(b.status == 1) {
+        // if x position of ball is greater than x position of the brick and less than x of brick + brick width (if it's within the left and right sides of the brick), change the direction of the ball. Same for the y.
+        if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+          dy = -dy;
+          // change status to 0 so it's not drawn again
+          b.status = 0;
+        }
+      }
+    }
+  }
+}
+
 function draw() {
   // clears the canvas before ball is drawn
   ctx.clearRect(0,0, canvas.width, canvas.height);
   drawBall();
   drawPaddle();
   drawBricks();
+  collisionDetection();
 
 // is y position + the position of dy (2 in this case) is less than 0
   // if it's less than 0, we know the ball is moving up and off the canvas
