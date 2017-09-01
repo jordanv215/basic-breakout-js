@@ -23,6 +23,18 @@ var brickPadding = 10;
 var brickOffsetTop = 30;
 var brickOffsetLeft= 30;
 
+// creating bricks array - empty for now
+var bricks = [];
+
+//for loop starts at 0 - at index 0, it creates another array inside of it that loops until 2 (3 times)
+for (c=0; c<brickColumnCount; c++) {
+  bricks[c] = [];
+  for (r=0; r<brickRowCount; r++) {
+    bricks[c][r] = {x:0, y:0};
+  }
+}
+
+
 //event listeners that will tell when a key is pressed down/when it is released
 document.addEventListener("keydown", keyDownHandler);
 document.addEventListener("keyup", keyUpHandler);
