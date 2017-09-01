@@ -44,10 +44,12 @@ document.addEventListener("keyup", keyUpHandler);
 function drawBricks() {
   for(c=0; c<brickColumnCount; c++) {
     for(r=0; r<brickRowCount; r++) {
-      bricks[c][r].x = 0;
-      bricks[c][r].y = 0;
+      var brickX = (c* (brickWidth+brickPadding))+brickOffsetLeft;
+      var brickY = (r* (brickHeight+brickPadding))+brickOffsetTop;
+      bricks[c][r].x = brickX;
+      bricks[c][r].y = brickY;
       ctx.beginPath;
-      ctx.rect(0, 0, brickWidth, brickHeight);
+      ctx.rect(brickX, brickY, brickWidth, brickHeight);
       ctx.fillStyle = "#569f56";
       ctx.fill();
       ctx.closePath;
