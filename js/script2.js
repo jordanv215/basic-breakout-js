@@ -35,9 +35,27 @@ for (c=0; c<brickColumnCount; c++) {
 }
 
 
+
 //event listeners that will tell when a key is pressed down/when it is released
 document.addEventListener("keydown", keyDownHandler);
 document.addEventListener("keyup", keyUpHandler);
+
+
+function drawBricks() {
+  for(c=0; c<brickColumnCount; c++) {
+    for(r=0; r<brickRowCount; r++) {
+      bricks[c][r].x = 0;
+      bricks[c][r].y = 0;
+      ctx.beginPath;
+      ctx.rect(0, 0, brickWidth, brickHeight);
+      ctx.fillStyle = "#569f56";
+      ctx.fill();
+      ctx.closePath;
+    }
+  }
+}
+
+
 
 // when you press the key down, it stores a keycode for the key that is pressed
   // is then passed as an argument into this function
@@ -79,11 +97,9 @@ function drawPaddle() {
 function draw() {
   // clears the canvas before ball is drawn
   ctx.clearRect(0,0, canvas.width, canvas.height);
-  // adds 2 on every frame every 10 milliseconds
-
-  //cleaned up function by calling the drawBall function each time
   drawBall();
   drawPaddle();
+  drawBricks();
 
 // is y position + the position of dy (2 in this case) is less than 0
   // if it's less than 0, we know the ball is moving up and off the canvas
