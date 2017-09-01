@@ -22,6 +22,7 @@ var brickHeight = 20;
 var brickPadding = 10;
 var brickOffsetTop = 30;
 var brickOffsetLeft= 30;
+var score = 0;
 
 // creating bricks array - empty for now
 var bricks = [];
@@ -107,10 +108,21 @@ function collisionDetection() {
           dy = -dy;
           // change status to 0 so it's not drawn again
           b.status = 0;
+          score++;
+          if(score == brickRowCount*brickColumnCount) {
+            alert("WINNER WINNER CHICKEN DINNER!");
+            document.location.reload();
+          }
         }
       }
     }
   }
+}
+
+function drawScore() {
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#00995DD";
+  ctx.fillText("Score: "+score, 8, 20,);
 }
 
 function draw() {
@@ -119,7 +131,9 @@ function draw() {
   drawBall();
   drawPaddle();
   drawBricks();
+  drawScore();
   collisionDetection();
+
 
 // is y position + the position of dy (2 in this case) is less than 0
   // if it's less than 0, we know the ball is moving up and off the canvas
